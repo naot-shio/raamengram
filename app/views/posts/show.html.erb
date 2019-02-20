@@ -17,7 +17,7 @@
                 </div>
               </div>
               <div class="cardbox-item">
-                <img class="img-fluid" src="https://via.placeholder.com/600" alt="Image">
+                <%= image_tag @post.image if @post.image.attached? %>
               </div>
               <div class="cardbox-base">
                 <p><%= @post.name %></p>

@@ -21,6 +21,11 @@
             <%= f.text_area :content, class: 'form-control' %>
           </div>
 
+          <div class="form-group">
+            <%= f.label :image %>
+            <%= f.file_field :image, class: 'form-control' %>
+          </div>
+
           <%= f.submit 'Post', class: 'btn btn-primary float-right' %>
         <% end %>
       </div>
@@ -42,7 +47,7 @@
                 </div>
               </div>
               <div class="cardbox-item">
-                <img class="img-fluid" src="https://via.placeholder.com/600" alt="Image">
+                <%= image_tag post.image if post.image.attached? %>
               </div>
               <div class="cardbox-base">
                 <P><%= link_to post do %><%= post.name %><% end %></P>

@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
       t.string :name
       t.text :content
-      t.string :image
       t.integer :price
 
       t.timestamps
