@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="cardbox-item">
-                <%= image_tag post.image if post.image.attached? %>
+                <%= image_tag post.image.variant(combine_options: {resize: '550>', gravity: 'Center', crop: '550x550+0+0'}) if post.image.attached? %>
               </div>
               <div class="cardbox-base">
                 <P><%= link_to post do %><%= post.name %><% end %></P>
