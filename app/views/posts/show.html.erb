@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-3">
+    <h1>User name</h1>
+  </div>
+
+  <div class="col-md-6">
+    <section class="post">
+        <div class="container">
+          <div class="row">	
+            <div class="cardbox shadow-lg bg-white">
+              <div class="cardbox-heading">
+                <div class="media m-0">
+                  <div class="media-body">
+                    <p class="m-0">User name</p>
+                    <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
+                  </div>
+                </div>
+              </div>
+              <div class="cardbox-item">
+                <img class="img-fluid" src="https://via.placeholder.com/600" alt="Image">
+              </div>
+              <div class="cardbox-base">
+                <p><%= @post.name %></p>
+                <p><%= @post.price %> yen</p>
+                <p><%= @post .content %></p>      
+              </div>
+              <div>
+                <form>
+                  <textarea class="form-control" placeholder="What are you doing right now?" ></textarea>
+                  <button type="submit" class="btn btn-success float-right">Comment</button>
+                </form>
+              </div>
+              <div class="clear"></div>
+              <div class="cardbox-comment">
+                <% 10.times do %>
+                  <p>User name</p>
+                  <p>Comment will be here</p>
+                  <hr>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+
+  <div class="col-md-3"></div>  
+</div>

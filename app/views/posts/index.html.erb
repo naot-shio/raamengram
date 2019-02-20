@@ -45,7 +45,7 @@
                 <img class="img-fluid" src="https://via.placeholder.com/600" alt="Image">
               </div>
               <div class="cardbox-base">
-                <P><%= post.name %></P>
+                <P><%= link_to post do %><%= post.name %><% end %></P>
                 <p><%= post.price %> yen</p>
               </div>
             </div>
