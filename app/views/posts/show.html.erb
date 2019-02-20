@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-3">
+    <h1>User name</h1>
+  </div>
+
+  <div class="col-md-6">
+    <section class="post">
+        <div class="container">
+          <div class="row">	
+            <div class="cardbox shadow-lg bg-white">
+              <div class="cardbox-heading">
+                <div class="media m-0">
+                  <div class="media-body">
+                    <p class="m-0">User name</p>
+                    <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
+                  </div>
+                </div>
+              </div>
+              <div class="cardbox-item">
+                <%= image_tag @post.image if @post.image.attached? %>
+              </div>
+              <div class="cardbox-base">
+                <p><%= @post.name %></p>
+                <p><%= @post.price %> yen</p>
+                <p><%= @post .content %></p>      
+              </div>
+              <div class="float-right">
+                <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-success' %>
+                <%= link_to 'Delete', @post, method: :delete, data: {confirm: "Are you sure you want to delete the post?" }, class: 'btn btn-danger' %>
+              </div>
+              <div class="clear"></div>
+              <div class="comment-field">
+                <form>
+                  <textarea class="form-control" placeholder="Comment!" ></textarea>
+                  <button type="submit" class="btn btn-success float-right">Comment</button>
+                </form>
+              </div>
+              <div class="clear"></div>
+              <div class="cardbox-comment">
+                <% 10.times do %>
+                  <p>User name</p>
+                  <p>Comment will be here</p>
+                  <hr>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+
+  <div class="col-md-3"></div>  
+</div>
