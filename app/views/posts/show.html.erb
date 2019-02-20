@@ -25,6 +25,9 @@
                 <p><%= @post .content %></p>      
               </div>
               <div>
+                <%= link_to edit_post_path(@post) do %>Edit post<% end %>
+              </div>
+              <div>
                 <form>
                   <textarea class="form-control" placeholder="What are you doing right now?" ></textarea>
                   <button type="submit" class="btn btn-success float-right">Comment</button>
