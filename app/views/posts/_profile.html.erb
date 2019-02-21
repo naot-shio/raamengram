@@ -1,0 +1,15 @@
+<div class="col-md-3">
+  <div class="card profile">
+    <% if user_signed_in? %>
+      <h5 class="card-header"><%= current_user.username %></h5>
+      <div class="card-body">
+        <p class="card-text"><%= current_user.description %></p>
+      </div>
+    <% else %>
+      <h5 class="card-header">Guest</h5>
+      <div class="card-body">
+        <p class="card-text"><%= link_to 'Sign up to post!', new_user_registration_path %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
