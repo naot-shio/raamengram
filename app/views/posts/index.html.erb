@@ -41,8 +41,8 @@
               <div class="cardbox-heading">
                 <div class="media m-0">
                   <div class="media-body">
-                    <p class="m-0">User name</p>
-                    <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
+                    <p class="m-0"><%= post.user.name %></p>
+                    <small class="float-right"><%= time_ago_in_words(post.created_at) %> ago</small>
                   </div>
                 </div>
               </div>
@@ -50,8 +50,8 @@
                 <%= image_tag post.image.variant(combine_options: {resize: '550>', gravity: 'Center', crop: '550x550+0+0'}) if post.image.attached? %>
               </div>
               <div class="cardbox-base">
-                <P><%= link_to post do %><%= post.name %><% end %></P>
-                <p><%= post.price %> yen</p>
+                <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
+                <p>Price: <%= post.price %> yen</p>
               </div>
             </div>
           </div>
