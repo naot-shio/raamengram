@@ -2,8 +2,14 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  
 
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page]).per(10)
     @post = Post.new
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @posts.generate_csv, filename: "posts-#{Date.today}.csv"}
+    end
   end
 
   def show
@@ -14,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def create
+  def create 
     @post = current_user.posts.build(post_params)
     
     if @post.save

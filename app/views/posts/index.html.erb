@@ -1,5 +1,22 @@
 <div class="row">
-  <%= render 'profile' %>
+  <div class="col-md-3">
+    <%= render 'profile' %>
+    <br />
+    <%= search_form_for @q do |f| %>
+      <div class="form-inline">
+        <%= f.label :name_cont, 'Name Search' %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <%= button_tag type: 'submit' do %>
+          <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <br />
+    <div>
+      <p>Would you like to export CSV file?</p>
+      <%= link_to 'Click here', posts_path(format: :csv) %>
+    </div>
+  </div>
 
   <div class="col-md-6">
     <%= render 'form' %>
@@ -23,7 +40,6 @@
   </div>
 
   <div class="col-md-3">
-  
   </div>
 </div>
 
