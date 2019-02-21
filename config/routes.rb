@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'posts#index'
   post '/', to: 'posts#create'
   resources :posts
+  resources :users, only: :show
 end
