@@ -1,48 +1,57 @@
 <div class="row">
+  <div class="col-md-3">
+    <% if user_signed_in? %>
+      <h1><%= current_user.username %></h1>
+    <% else %>
+      <h1>Guest</h1>
+    <% end %>
+  </div>
   <div class="col-md-6 col-md-offset-3">
     <section class="post">
-          <div class="row">	
-            <div class="cardbox shadow-lg bg-white">
-              <div class="cardbox-heading">
-                <div class="media m-0">
-                  <div class="media-body">
-                    <p class="m-0">User name</p>
-                    <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
-                  </div>
-                </div>
-              </div>
-              <div class="cardbox-item">
-                <%= image_tag @post.image if @post.image.attached? %>
-              </div>
-              <div class="float-right">
-                <%= link_to edit_post_path(@post) do %><span class="icon"><i class="fa fa-edit"></i></span><% end %>
-                <%= link_to @post, method: :delete, data: {confirm: "Are you sure you want to delete this post?" } do %>
-                  <span class="icon"><i class="fa fa-trash-o"></i></span>
-                <% end %>
-              </div>
-              <div class="clear"></div>
-              <div class="cardbox-base">
-                <p><%= @post.name %></p>
-                <p><%= @post.price %> yen</p>
-                <p><%= @post.content %></p>      
-              </div>
-              <div class="comment-field">
-                <form>
-                  <textarea class="form-control" placeholder="Comment!" ></textarea>
-                  <button type="submit" class="btn btn-success float-right">Comment</button>
-                </form>
-              </div>
-              <div class="clear"></div>
-              <div class="cardbox-comment">
-                <% 10.times do %>
-                  <p>User name</p>
-                  <p>Comment will be here</p>
-                  <hr>
-                <% end %>
+      <div class="row">	
+        <div class="cardbox shadow-lg bg-white">
+          <div class="cardbox-heading">
+            <div class="media m-0">
+              <div class="media-body">
+                <p class="m-0"><%= @post.user.username %></p>
+                <small class="float-right"><%= time_ago_in_words(@post.created_at) %> ago</small>
               </div>
             </div>
           </div>
-      </section>
-  </div>
+          <div class="cardbox-item">
+            <%= image_tag @post.thumbnail if @post.image.attached? %>
+          </div>
+          <div class="float-right">
+            <%= link_to edit_post_path(@post) do %><span class="icon"><i class="fa fa-edit"></i></span><% end %>
+            <%= link_to @post, method: :delete, data: {confirm: "Are you sure you want to delete this post?" } do %>
+              <span class="icon"><i class="fa fa-trash-o"></i></span>
+            <% end %>
+          </div>
+          <div class="clear"></div>
+          <div class="cardbox-base">
+            <p>Name: <%= @post.name %></p>
+            <p>Price: <%= @post.price %> yen</p>
+            <p><%= @post.content %></p>      
+          </div>
+          <% if user_signed_in? %>
+            <div class="comment-field">
+              <form>
+                <textarea class="form-control" placeholder="Comment!" ></textarea>
+                <button type="submit" class="btn btn-success float-right">Comment</button>
+              </form>
+            </div>
+            <div class="clear"></div>
+          <% end %>
 
+          <div class="cardbox-comment">
+            <% 10.times do %>
+              <p>User name</p>
+              <p>Comment will be here</p>
+              <hr>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>

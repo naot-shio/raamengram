@@ -1,38 +1,44 @@
 <div class="row">
   <div class="col-md-3">
-    <h1><%= current_user.name %></h1>
+    <% if user_signed_in? %>
+      <h1><%= current_user.username %></h1>
+    <% else %>
+      <h1>Guest</h1>
+    <% end %>
   </div>
 
   <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= form_with model: @post, local: true do |f| %>
-          <div class="form-group">
-            <%= f.label :name, 'Name' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :price, 'Price' %>
-            <%= f.number_field :price, class: 'form-control' %>
-          </div>
+    <% if user_signed_in? %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_with model: @post, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :name, 'Name' %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :price, 'Price' %>
+              <%= f.number_field :price, class: 'form-control' %>
+            </div>
 
-          <div class="form-group">
-            <%= f.label :content, 'Description' %>
-            <%= f.text_area :content, class: 'form-control' %>
-          </div>
+            <div class="form-group">
+              <%= f.label :content, 'Description' %>
+              <%= f.text_area :content, class: 'form-control' %>
+            </div>
 
-          <div class="form-group">
-            <%= f.label :image %>
-            <%= f.file_field :image, class: 'form-control' %>
-          </div>
+            <div class="form-group">
+              <%= f.label :image %>
+              <%= f.file_field :image, class: 'form-control' %>
+            </div>
 
-          <%= f.submit 'Post', class: 'btn btn-primary float-right' %>
-        <% end %>
+            <%= f.submit 'Post', class: 'btn btn-primary float-right' %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="clear"></div>
-  
+      <div class="clear"></div>
+    <% end %>
+
     <% @posts.each do |post| %>
       <section class="post">
         <div class="container">
@@ -41,13 +47,13 @@
               <div class="cardbox-heading">
                 <div class="media m-0">
                   <div class="media-body">
-                    <p class="m-0"><%= post.user.name %></p>
+                    <p class="m-0"><%= post.user.username %></p>
                     <small class="float-right"><%= time_ago_in_words(post.created_at) %> ago</small>
                   </div>
                 </div>
               </div>
               <div class="cardbox-item">
-                <%= image_tag post.image.variant(combine_options: {resize: '550>', gravity: 'Center', crop: '550x550+0+0'}) if post.image.attached? %>
+                <%= image_tag post.thumbnail if post.image.attached? %>
               </div>
               <div class="cardbox-base">
                 <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
