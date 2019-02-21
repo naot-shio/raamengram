@@ -5,6 +5,11 @@ class PostsController < ApplicationController
     @post = Post.new
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @posts.generate_csv, filename: "posts-#{Date.today}.csv"}
+    end
   end
 
   def show
