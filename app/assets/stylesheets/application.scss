@@ -16,7 +16,10 @@
   margin-top: 20px;
 }
 
-.fas {
+.fa-trash-alt {
+  font-size: 32px;
+}
+.fa-edit {
   font-size: 32px;
 }
 
@@ -48,6 +51,7 @@
 
 .edit_like {
   display: inline-block;
+  color: white;
 }
 
 .new_like {
@@ -61,4 +65,12 @@
 
 aside {
   margin-top: 20px;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+.fa-search {
+  font-size: 30px;
 }
