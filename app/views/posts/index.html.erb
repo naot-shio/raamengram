@@ -2,26 +2,11 @@
   <div class="col-md-3">
     <%= render 'profile' %>
     <br />
-    <% if user_signed_in? %>
-      <%= search_form_for @q do |f| %>
-        <div class="form-inline">
-          <%= f.label :name_cont, 'Name Search' %>
-          <%= f.search_field :name_cont, class: 'form-control' %>
-          <%= button_tag type: 'submit' do %>
-            <i class="fas fa-search" aria-hidden="true"></i>
-          <% end %>
-        </div>
-      <% end %>
-      <br />
-      <div>
-        <p>Would you like to export CSV file?</p>
-        <%= link_to 'Click here', posts_path(format: :csv) %>
-      </div>
-    <% end %>
+    <%= render 'form' %>
   </div>
   
   <div class="col-md-6">
-    <%= render 'form' %>
+   
 
     <% @posts.each do |post| %>
       <section class="post">
@@ -42,13 +27,25 @@
   </div>
 
   <div class="col-md-3">
-  <% if @post_rankings.present? %>
-  <div class="row">
-    <% @post_rankings.each_with_index do |item, index| %>
-      <%= item.name %>
-    <% end %>
-  </div>
-<% end %>
-  </div>
+    <aside>
+      <% if user_signed_in? %>
+          <%= search_form_for @q do |f| %>
+            <div class="form-inline">
+              <%= f.label :name_cont, 'Name Search' %>
+              <%= f.search_field :name_cont, class: 'form-control' %>
+              <%= button_tag type: 'submit' do %>
+                <i class="fas fa-search" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          <% end %>
+          <br />
+          <div>
+            <p>Would you like to export CSV file?</p>
+            <%= link_to 'Click here', posts_path(format: :csv) %>
+          </div>
+        <% end %>
+      </div>
+    </aside>
+    
 </div>
 
