@@ -1,31 +1,33 @@
 <% if @posts.present? %>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-4">
       <%= render 'posts/profile' %>
     </div>
-    <div class="col-md-6">
-      <% @posts.each_with_index do |post, index| %>
-        <div class="container">
-          <div class="row">	
-            <div class="cardbox shadow-lg bg-white">
-              <% if index == 0 %>
-                <h2 class="ranking"><%= index + 1 %>st</h2>
-              <% elsif index == 1 %>
-                <h2 class="ranking"><%= index + 1 %>nd</h2>
-              <% elsif index == 2 %>
-                <h2 class="ranking"><%= index + 1 %>rd</h2>
-              <% else %>
-                <h2 class="ranking"><%= index + 1 %>th</h2>
-              <% end %>
-              <%= render 'posts/photo', post: post %>
-              <div class="cardbox-base">
-                <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
-                <p>Price: <%= post.price %> yen</p>
-              </div>       
+    <div class="col-lg-8">
+      <div class="col-lg-8 offset-lg 2">
+        <% @posts.each_with_index do |post, index| %>
+          <div class="container">
+            <div class="row">	
+              <div class="cardbox shadow-lg bg-white">
+                <% if index == 0 %>
+                  <h2 class="ranking"><%= index + 1 %>st</h2>
+                <% elsif index == 1 %>
+                  <h2 class="ranking"><%= index + 1 %>nd</h2>
+                <% elsif index == 2 %>
+                  <h2 class="ranking"><%= index + 1 %>rd</h2>
+                <% else %>
+                  <h2 class="ranking"><%= index + 1 %>th</h2>
+                <% end %>
+                <%= render 'posts/photo', post: post %>
+                <div class="cardbox-base">
+                  <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
+                  <p>Price: <%= post.price %> yen</p>
+                </div>       
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
