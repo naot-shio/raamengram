@@ -1,4 +1,4 @@
-<h1><%= @user.name %></h1>
+<h1><%= current_user.name %></h1>
 <% if @posts.any? %>
   <div class="row">
     <% @posts.each do |post| %>
@@ -6,7 +6,7 @@
       <div class="cardbox-heading">
         <div class="media m-0">
           <div class="media-body">
-            <p class="m-0"><%= @user.username %></p>
+            <p class="m-0"><%= post.user.username %></p>
             <small class="float-right"><%= time_ago_in_words(post.created_at) %> ago</small>
           </div>
         </div>

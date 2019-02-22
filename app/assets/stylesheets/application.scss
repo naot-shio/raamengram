@@ -16,7 +16,7 @@
   margin-top: 20px;
 }
 
-.fa {
+.fas {
   font-size: 32px;
 }
 
@@ -30,8 +30,31 @@
 
 .cardbox {
   max-width: 550px;
+  margin-top: 20px;
 }
 
 .profile {
   margin-top: 20px;
+}
+
+.fa-heart {
+  font-size: 32px;
+  color: red;
+}
+
+.likes {
+  display: inline-block;
+}
+
+.edit_like {
+  display: inline-block;
+}
+
+.new_like {
+  display: inline-block;
+}
+
+.ranking {
+  padding-left: 10px;
+  border-left: 5px solid #FA8072;
 }

@@ -8,11 +8,11 @@
       <div class="row">	
         <div class="cardbox shadow-lg bg-white">
           <%= render 'photo', post: @post %>
-          <% if current_user == @post.user.id %>
+          <% if current_user.id == @post.user.id %>
             <div class="float-right">
-              <%= link_to edit_post_path(@post) do %><span class="icon"><i class="fa fa-edit"></i></span><% end %>
+              <%= link_to edit_post_path(@post) do %><span class="icon"><i class="fas fa-edit"></i></span><% end %>
               <%= link_to @post, method: :delete, data: {confirm: "Are you sure you want to delete this post?" } do %>
-                <span class="icon"><i class="fa fa-trash-o"></i></span>
+                <span class="icon"><i class="fas fa-trash-alt"></i></span>
               <% end %>
             </div>
             <div class="clear"></div>
@@ -42,5 +42,30 @@
         </div>
       </div>
     </section>
+  </div>
+  <div class="col-md-3">
+  
+      <% if current_user.has_liked?(@post) %>
+        <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
+          <%= hidden_field_tag :post_id, @post.id %>
+          <%= button_tag type: 'submit' do %>
+            <span class="icon"><i class="fas fa-heart"></i></span>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.likes.build) do |f| %>
+          <%= hidden_field_tag :post_id, @post.id %>
+          <%= button_tag type: 'submit' do %>
+            <span class="icon"><i class="far fa-heart"></i></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    
+    <% if @count_likes == 0 %>
+      <p class="likes">No one likes this post yet</p>
+    <% else %>
+      <h4 class="likes">+ <%= @count_likes %></h4>
+    <% end %>
+    
   </div>
 </div>
