@@ -44,16 +44,28 @@
     </section>
   </div>
   <div class="col-md-3">
-    <% if current_user.has_liked?(@post) %>
-      <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
-        <%= hidden_field_tag :post_id, @post.id %>
-        <%= f.submit 'Unlike', class: "btn btn-primary btn-md" %>
+  
+      <% if current_user.has_liked?(@post) %>
+        <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
+          <%= hidden_field_tag :post_id, @post.id %>
+          <%= button_tag type: 'submit' do %>
+            <span class="icon"><i class="fas fa-heart"></i></span>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.likes.build) do |f| %>
+          <%= hidden_field_tag :post_id, @post.id %>
+          <%= button_tag type: 'submit' do %>
+            <span class="icon"><i class="far fa-heart"></i></span>
+          <% end %>
+        <% end %>
       <% end %>
+    
+    <% if @count_likes == 0 %>
+      <p class="likes">No one likes this post yet</p>
     <% else %>
-      <%= form_for(current_user.likes.build) do |f| %>
-        <%= hidden_field_tag :post_id, @post.id %>
-        <%= f.submit 'Like', class: "btn btn-primary btn-md" %>
-      <% end %>
+      <h4 class="likes">+ <%= @count_likes %></h4>
     <% end %>
+    
   </div>
 </div>
