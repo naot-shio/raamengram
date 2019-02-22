@@ -1,0 +1,13 @@
+<% if @posts.present? %>
+  <div class="row">
+    <% @posts.each_with_index do |post, index| %>
+      <div class="post">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <%= post.name %>          
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

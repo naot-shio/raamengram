@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page]).per(10)
+    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
+
 
     respond_to do |format|
       format.html
