@@ -2,14 +2,18 @@
   <div class="col-lg-4">
     <div class="card profile">
       <%= render 'profile' %>
-      <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+      <% if user_signed_in? %>
+        <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+      <% end %>
     </div>
     <br />
 
-    <div>
-      <p>Would you like to export CSV file?</p>
-      <%= link_to 'Click here', posts_path(format: :csv) %>
-    </div>
+    <% if user_signed_in? %>
+      <div>
+        <p>Would you like to export CSV file?</p>
+        <%= link_to 'Click here', posts_path(format: :csv) %>
+      </div>
+    <% end %>
   </div>
   
   <div class="col-lg-8">

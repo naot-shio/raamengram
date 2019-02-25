@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]  
+  before_action :authenticate_user!, except: [:index]  
 
   def index
     @q = Post.ransack(params[:q])
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     counter(@post)
+    @comment = Comment.new
   end
 
   def new

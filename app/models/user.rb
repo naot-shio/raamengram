@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :has_liked, through: :likes, source: :post
-
+  has_many :comments
+  
   def like(post)
     self.likes.find_or_create_by(post_id: post.id)
   end
