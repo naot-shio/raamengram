@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   def self.csv_attributes
-    ["name", "price", "broth", "content", "created_at", "updated_at"]
+    ["shop", "name", "price", "broth", "area", "content", "created_at"]
   end
 
   def self.generate_csv
