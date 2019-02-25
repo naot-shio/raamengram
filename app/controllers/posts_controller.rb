@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  
 
   def index
-    @post = Post.new
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
 
@@ -15,6 +14,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     counter(@post)
+  end
+
+  def new
+    @post = Post.new
   end
 
   def edit

@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col-lg-4">
-    <%= render 'profile' %>
+    <div class="card profile">
+      <%= render 'profile' %>
+      <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+    </div>
     <br />
-    <%= render 'form' %>
 
-    <br />
     <div>
       <p>Would you like to export CSV file?</p>
       <%= link_to 'Click here', posts_path(format: :csv) %>
