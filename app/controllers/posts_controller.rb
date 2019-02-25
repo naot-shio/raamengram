@@ -2,10 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]  
 
   def index
-    @post = Post.new
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
-
 
     respond_to do |format|
       format.html
@@ -16,6 +14,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     counter(@post)
+  end
+
+  def new
+    @post = Post.new
   end
 
   def edit
@@ -46,6 +48,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :price, :content, :image, :broth)
+    params.require(:post).permit(:name, :price, :content, :image, :broth, :area, :shop)
   end
 end

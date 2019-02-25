@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col-lg-4">
-    <%= render 'profile' %>
+    <div class="card profile">
+      <%= render 'profile' %>
+      <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+    </div>
     <br />
-    <%= render 'form' %>
 
-    <br />
     <div>
       <p>Would you like to export CSV file?</p>
       <%= link_to 'Click here', posts_path(format: :csv) %>
@@ -17,7 +18,7 @@
         <% if user_signed_in? %>
           <%= search_form_for @q do |f| %>
             <div class="form-inline">
-              <%= f.search_field :name_or_broth_cont, placeholder: 'Search by name or broth', size: '50' ,class: 'form-control' %>
+              <%= f.search_field :shop_or_broth_or_area_cont, placeholder: 'Search by shop, area, or broth', size: '50' ,class: 'form-control' %>
               <%= button_tag type: 'submit' do %>
                 <i class="fas fa-search" aria-hidden="true"></i>
               <% end %>
@@ -35,15 +36,17 @@
               <div class="cardbox shadow-lg bg-white">
                 <%= render 'photo', post: post %>
                 <div class="cardbox-base">
-                  <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
-                  <p>Price: <%= post.price %> yen</p>
+                  <P>Shop: <%= post.shop %></P>
+                  <p>Name: <%= post.name %></p>
                   <p>Broth: <%= post.broth %></p>
+                  <p class="float-right"><%= link_to post do %><span class="icon"><i class="fas fa-eye"></i></span>View more</p><% end %>
                 </div>
               </div>
             </div>
           </div>
         </section>
       <% end %>
+      <br />
       <%= paginate @posts %>
     </div>
     

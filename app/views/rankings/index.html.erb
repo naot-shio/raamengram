@@ -1,10 +1,12 @@
 <% if @posts.present? %>
   <div class="row">
     <div class="col-lg-4">
-      <%= render 'posts/profile' %>
+      <div class="card profile">
+       <%= render 'posts/profile' %>
+      </div>
     </div>
     <div class="col-lg-8">
-      <div class="col-lg-8 offset-lg 2">
+      <div class="col-lg-8 offset-lg-2">
         <% @posts.each_with_index do |post, index| %>
           <div class="container">
             <div class="row">	
