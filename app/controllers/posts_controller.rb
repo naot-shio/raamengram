@@ -6,7 +6,6 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
 
-
     respond_to do |format|
       format.html
       format.csv {send_data @posts.generate_csv, filename: "posts-#{Date.today}.csv"}
@@ -46,6 +45,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :price, :content, :image, :broth)
+    params.require(:post).permit(:name, :price, :content, :image, :broth, :area, :shop)
   end
 end
