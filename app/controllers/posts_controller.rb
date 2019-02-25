@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     counter(@post)
+    @comment = Comment.new
   end
 
   def new
