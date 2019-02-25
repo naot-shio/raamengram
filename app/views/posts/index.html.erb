@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
           <%= search_form_for @q do |f| %>
             <div class="form-inline">
-              <%= f.search_field :name_cont, class: 'form-control' %>
+              <%= f.search_field :name_or_broth_cont, placeholder: 'Search by name or broth', size: '50' ,class: 'form-control' %>
               <%= button_tag type: 'submit' do %>
                 <i class="fas fa-search" aria-hidden="true"></i>
               <% end %>
@@ -37,6 +37,7 @@
                 <div class="cardbox-base">
                   <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
                   <p>Price: <%= post.price %> yen</p>
+                  <p>Broth: <%= post.broth %></p>
                 </div>
               </div>
             </div>
