@@ -1,4 +1,11 @@
 class Post < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 50}
+  validates :area, presence: true, length: {maximum: 50}
+  validates :shop, presence: true, length: {maximum: 50}
+  validates :broth, presence: true, length: {maximum: 50}
+  validates :price, presence: true
+  validates :image, presence: true
+ 
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy

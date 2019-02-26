@@ -29,12 +29,17 @@ class PostsController < ApplicationController
     
     if @post.save
       redirect_to root_url, notice: "#{@post.name} was successfully created"
+    else
+      flash.now[:danger] = 'Failed to create a post'
+      render :new
     end
   end
 
   def update
     if @post.update!(post_params)
       redirect_to @post, notice: "#{@post.name} was successfully updated"
+    else
+      redirect_to @post, notice: "Failed to create a post"
     end
   end
 
