@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]  
+  before_action :authenticate_user!, except: [:index] 
+  before_action :find_post, only: [:show, :edit, :update]
 
   def index
     @q = Post.ransack(params[:q])
@@ -12,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     counter(@post)
     @comment = Comment.new
   end
@@ -22,7 +22,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def create 
@@ -34,9 +33,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    if post.update!(post_params)
-      redirect_to post, notice: "#{post.name} was successfully updated"
+    if @post.update!(post_params)
+      redirect_to @post, notice: "#{@post.name} was successfully updated"
     end
   end
 
@@ -50,5 +48,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:name, :price, :content, :image, :broth, :area, :shop)
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 end
