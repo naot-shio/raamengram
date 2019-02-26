@@ -2,36 +2,27 @@ require 'rails_helper'
 
 describe 'Post', type: :system do
   describe 'Show the list of posts' do
+    let(:user_a) { FactoryBot.create(:user, name: 'UserA', username: 'UsernameA', email: 'usera@example.com' )}
+    let(:user_b) { FactoryBot.create(:user, name: 'UserB', username: 'UsernameB', email: 'userb@example.com' )}
+    
     before do
-      # Create user_a
-      user_a = FactoryBot.create(:user, name: 'UserA', username: 'UsernameA', email: 'usera@example.com')
-      # User1 should be the tester
-      FactoryBot.create(:post, name: 'Shop1', user: user_a)
+      FactoryBot.create(:post, name: 'Shop1', user:user_a)
+      visit new_user_session_path
+      fill_in 'Email', with: login_user.email
+      fill_in 'Password', with: login_user.password
+      click_button 'Log in'
+      visit user_path(login_user)
     end
-    context 'When user_a is logged in' do
-      before do
-        # the tester should be logged in as user_a
-        visit new_user_session_path
-        fill_in 'Email', with: 'usera@example.com'
-        fill_in 'Password', with: 'password'
-        click_button 'Log in'
-      end
 
+    context 'When user_a is logged in' do
+      let(:login_user) { user_a }
       it 'should show the posts created by user1' do
-        #show the list of posts
         expect(page).to have_content 'Shop1'
       end
     end
 
     context 'When user_b is logged in' do
-      before do
-        FactoryBot.create(:user, name: 'UserB', username: 'UsernameB', email: 'userb@example.coom')
-        visit new_user_session_path
-        fill_in 'Email', with: 'userb@example.com'
-        fill_in 'Password', with: 'password'
-        click_button 'Log in'
-      end
-
+      let(:login_user) { user_b }
       it 'should not show the posts created by user1' do
         expect(page).to have_no_content 'Shop1'
       end
