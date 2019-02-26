@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :task do
+  factory :post do
     shop {'shop1'}
     area {'tokyo'}
     name {'tonkotsu'}
