@@ -22,8 +22,7 @@
                 <% end %>
                 <%= render 'posts/photo', post: post %>
                 <div class="cardbox-base">
-                  <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
-                  <p>Price: <%= post.price %> yen</p>
+                  <%= render 'layouts/cardbox_base', post: post %>
                 </div>       
               </div>
             </div>
