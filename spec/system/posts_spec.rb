@@ -22,5 +22,19 @@ describe 'Post', type: :system do
         expect(page).to have_content 'Shop1'
       end
     end
+
+    context 'When user_b is logged in' do
+      before do
+        FactoryBot.create(:user, name: 'UserB', username: 'UsernameB', email: 'userb@example.coom')
+        visit new_user_session_path
+        fill_in 'Email', with: 'userb@example.com'
+        fill_in 'Password', with: 'password'
+        click_button 'Log in'
+      end
+
+      it 'should not show the posts created by user1' do
+        expect(page).to have_no_content 'Shop1'
+      end
+    end
   end
 end
