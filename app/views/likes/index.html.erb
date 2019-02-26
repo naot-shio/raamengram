@@ -15,8 +15,7 @@
         <%= image_tag post.image.variant(combine_options: {resize: '350', gravity: 'Center', crop: '350x350+0+0'}) if post.image.attached? %>
       </div>
       <div class="cardbox-base">
-        <P>Name: <%= link_to post do %><%= post.name %><% end %></P>
-        <p>Price: <%= post.price %> yen</p>
+        <%= render 'layouts/cardbox_base', post: post %>
       </div>
     </div>
     <% end %>
