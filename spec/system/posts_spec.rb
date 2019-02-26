@@ -51,5 +51,19 @@ describe 'Post', type: :system do
         expect(page).to have_content 'Shop1'
       end
     end
+
+    describe 'Show a list of posts that user_a liked' do
+      let(:login_user) { user_a }
+
+      before do
+        visit  post_path(post_a)
+        find(".fa-heart").click
+        visit likes_path
+      end
+
+      it 'should show the post a' do
+        expect(page).to have_content 'Shop1'
+      end
+    end
   end
 end
