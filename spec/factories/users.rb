@@ -1,8 +1,9 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    sequence(:name) { |n| "example#{n}"}
-    sequence(:email) { |n| "example#{n}@example.com"}
-    password 'password'
-    password_confirmation 'password'
+    name { |n| "example#{n}"}
+    username { |n| "example user#{n}"}
+    email { |n| "example#{n}@example.com"}
+    password {'123456'}
+    password_confirmation {'123456'}
   end
 end
