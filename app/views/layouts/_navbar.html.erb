@@ -1,39 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to root_path, class: 'navbar-brand' do %><span class="icon"><i class="fas fa-home">Home</i></span><% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    
+  <%= render 'layouts/navigation/header' %>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li>
-        <%= link_to likes_path, class:"nav-link" do %><span class="icon"><i class="fas fa-thumbs-up"></i></span>Favorite<% end %>
-      </li>
-      <li class="nav-link">
-        <%= link_to rankings_path do %><span class="icon"><i class="fas fa-star"></i>Ranking</span><% end %>
-      </li>
-    </ul>
+  <%= render 'layouts/navigation/collapsible_elements' %>
 
-    <div>
-      <% if user_signed_in? %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-link">
-            <%= link_to destroy_user_session_path, method: :delete do %><span class="icon"><i class="fas fa-sign-out-alt"></i></span>Logout<% end %>
-          </li>
-          <li class="nav-link">
-            <%= link_to edit_user_registration_path(current_user) do %><span class="icon"><i class="fas fa-user-edit"></i></span>Edit<% end %>
-          </li>
-        </ul>
-      <% else %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-link">
-            <%= link_to new_user_session_path do %><span class="icon"></span><i class="fas fa-sign-in-alt"></i>Sign in<% end %>
-          </li>
-          <li class="nav-link">
-            <%= link_to new_user_registration_path do %><span class="icon"><i class="fas fa-user-plus"></i></span>Sign up<% end %>
-          </li>
-        </ul>
-      <% end %>
-    </div> 
   </div>
 </nav>
