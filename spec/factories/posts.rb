@@ -1,8 +1,11 @@
 FactoryBot.define do
   factory :post do
-    title {'qqqqqqqq'}
-    content {'lol ' * 30}
+    shop {'qqqqqqqq'}
+    area {'lol ' * 10}
+    name {'lol ' * 10}
+    price {100}
+    broth {100}
+    description {100}
     user
-    broth
   end
 end
