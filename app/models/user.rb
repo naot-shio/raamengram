@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :posts
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :has_liked, through: :likes, source: :post
-  has_many :comments
+  has_many :comments, dependent: :destroy
   
   def like(post)
     self.likes.find_or_create_by(post_id: post.id)
