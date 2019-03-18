@@ -32,7 +32,7 @@ gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'bootstrap'
+gem "bootstrap", ">= 4.3.1"
 gem 'kaminari'
 gem 'devise'
 gem 'ransack'
