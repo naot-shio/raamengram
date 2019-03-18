@@ -59,24 +59,13 @@ ActiveRecord::Schema.define(version: 2019_02_25_054844) do
   create_table "posts", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.string "image"
     t.integer "price"
+    t.string "broth"
+    t.string "shop"
+    t.string "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "broth"
-    t.bigint "shop_id"
-    t.string "shop"
-    t.string "area"
-    t.index ["shop_id"], name: "index_posts_on_shop_id"
-  end
-
-  create_table "shops", force: :cascade do |t|
-    t.string "name"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,5 +89,4 @@ ActiveRecord::Schema.define(version: 2019_02_25_054844) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "posts", "shops"
 end
