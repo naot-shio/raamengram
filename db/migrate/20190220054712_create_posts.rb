@@ -4,6 +4,9 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :content
       t.integer :price
+      t.string :broth
+      t.string :shop
+      t.string :area
 
       t.timestamps
     end
